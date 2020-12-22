@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <fa-icon [icon]="faCoffee" class="logo-icon"></fa-icon>
+  
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">Logo</a>
+    
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink= "/shopping-cart" routerLinkActive="active-link">Shopping Cart</a>
+        </li>
+    
+        <!-- Dropdown -->
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Username
+          </a>
+          <div ngbDropdownToggleMenu class="dropdown-menu">
+            <a class="dropdown-item" routerLink="/my-orders" routerLinkActive="active-link" >My Orders</a>
+            <a class="dropdown-item" routerLink="/manage-orders" routerLinkActive="active-link">Manage Orders</a>
+            <a class="dropdown-item" routerLink="/manage-products" routerLinkActive="active-link">Manage Products</a>
+            <a class="dropdown-item" routerLink="/logout" routerLinkActive="active-link">Log Out</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  
+   navbar li a

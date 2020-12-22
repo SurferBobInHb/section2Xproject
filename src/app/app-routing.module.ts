@@ -1,3 +1,5 @@
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { HomeComponent } from './home/home.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
@@ -6,10 +8,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 
 const routes: Routes = [
-  {path: 'myorders', component: MyOrdersComponent},
-  {path: 'manageorders', component: ManageOrdersComponent},
-  {path: 'manageproducts', component: ManageProductsComponent},
+  {path: '', component: HomeComponent},
+  {path: 'shopping-cart', component: ShoppingCartComponent},
+  {path: 'my-orders', component: MyOrdersComponent},
+  {path: 'manage-orders', component: ManageOrdersComponent},
+  {path: 'manage-products', component: ManageProductsComponent},
   {path: 'logout', component: LogoutComponent},
+  {path: '**', redirectTo: '/'},
 ];
 
 @NgModule({

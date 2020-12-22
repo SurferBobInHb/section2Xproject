@@ -1,4 +1,3 @@
-import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -11,6 +10,8 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { LogoutComponent } from './logout/logout.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MyOrdersComponent,
     ManageOrdersComponent,
     ManageProductsComponent,
-    LogoutComponent
+    LogoutComponent,
+    NavbarComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

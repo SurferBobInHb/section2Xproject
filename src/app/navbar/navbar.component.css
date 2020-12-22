@@ -1,0 +1,12 @@
+
+.logo-icon {
+    color: red;
+}
+
+.active-link {
+    color: green;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
