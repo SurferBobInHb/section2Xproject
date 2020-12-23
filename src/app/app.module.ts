@@ -6,21 +6,21 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
-import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { MyOrdersComponent } from './shopping/my-orders/my-orders.component';
+import { ManageOrdersComponent } from './ana/manage-orders/manage-orders.component';
+import { ManageProductsComponent } from './ana/manage-products/manage-products.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { LoginComponent } from './ana/login/login.component';
 import { AuthService } from './services/auth.service';
 import { fakeBackendProvider } from './utils/helpers/fake-backend';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminAuthGuard } from './ana/guards/AdminAuthGuard';
 import { NoAccessComponent } from './ana/messages/no-access/no-access.component';
-import { TokenInterceptor } from './services/token-interceptor.service';
-import { JwtInterceptor } from './services/JwtInterceptor ';
+import { TokenInterceptor } from './interceptors/token-interceptor.service';
+import { JwtInterceptor } from './interceptors/JwtInterceptor ';
 
 
 

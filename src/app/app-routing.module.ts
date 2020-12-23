@@ -1,10 +1,10 @@
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { HomeComponent } from './home/home.component';
-import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { ManageOrdersComponent } from './ana/manage-orders/manage-orders.component';
+import { MyOrdersComponent } from './shopping/my-orders/my-orders.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { ManageProductsComponent } from './ana/manage-products/manage-products.component';
 import { LoginComponent } from './ana/login/login.component';
 import { AdminAuthGuard } from './ana/guards/AdminAuthGuard';
 import { NoAccessComponent } from './ana/messages/no-access/no-access.component';

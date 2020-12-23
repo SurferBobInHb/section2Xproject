@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
