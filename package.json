@@ -23,12 +23,15 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "angular-mock-backend": "^1.2.0",
     "bootstrap": "^4.5.3",
+    "http-client": "^4.3.1",
     "jquery": "^1.12.4",
     "popper.js": "1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@auth0/angular-jwt": "^5.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.5",

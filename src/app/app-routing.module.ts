@@ -6,9 +6,11 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { LoginComponent } from './ana/login/login.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'ana/login', component: LoginComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'my-orders', component: MyOrdersComponent},
   {path: 'manage-orders', component: ManageOrdersComponent},

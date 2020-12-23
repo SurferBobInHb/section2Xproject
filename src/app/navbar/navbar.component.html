@@ -11,19 +11,25 @@
           <a class="nav-link" routerLink= "/shopping-cart" routerLinkActive="active-link">Shopping Cart</a>
         </li>
     
-        <!-- Dropdown -->
-        <li ngbDropdown class="nav-item dropdown">
-          <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            Username
-          </a>
-          <div ngbDropdownToggleMenu class="dropdown-menu">
-            <a class="dropdown-item" routerLink="/my-orders" routerLinkActive="active-link" >My Orders</a>
-            <a class="dropdown-item" routerLink="/manage-orders" routerLinkActive="active-link">Manage Orders</a>
-            <a class="dropdown-item" routerLink="/manage-products" routerLinkActive="active-link">Manage Products</a>
-            <a class="dropdown-item" routerLink="/logout" routerLinkActive="active-link">Log Out</a>
-          </div>
-        </li>
-      </ul>
+        <div *ngIf="isLoggedIn">
+            <!-- Dropdown -->
+            <li ngbDropdown class="nav-item dropdown">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                {{username}}
+            </a>
+            <div ngbDropdownToggleMenu class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/my-orders" routerLinkActive="active-link" >My Orders</a>
+                <a class="dropdown-item" routerLink="/manage-orders" routerLinkActive="active-link">Manage Orders</a>
+                <a class="dropdown-item" routerLink="/manage-products" routerLinkActive="active-link">Manage Products</a>
+                <a class="dropdown-item" routerLink="/logout" routerLinkActive="active-link">Log Out</a>
+            </div>
+            </li>
+        </div>
+        <div *ngIf="! isLoggedIn">
+            <li class="nav-item">
+                <a class="nav-link" routerLink= "/ana/login" routerLinkActive="active-link">Login</a>
+              </li>  
+        </div>
+        </ul>
+        {{isLoggedIn}}
     </nav>
-  
-   navbar li a

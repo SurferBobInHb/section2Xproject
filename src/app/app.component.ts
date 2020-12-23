@@ -11,5 +11,6 @@ export class AppComponent {
   courses: any[];
 
   constructor() {
+  
   }
 }
