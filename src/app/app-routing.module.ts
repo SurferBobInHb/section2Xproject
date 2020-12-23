@@ -1,7 +1,6 @@
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { HomeComponent } from './home/home.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
-import { LogoutComponent } from './logout/logout.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,7 +14,6 @@ const routes: Routes = [
   {path: 'my-orders', component: MyOrdersComponent},
   {path: 'manage-orders', component: ManageOrdersComponent},
   {path: 'manage-products', component: ManageProductsComponent},
-  {path: 'logout', component: LogoutComponent},
   {path: '**', redirectTo: '/'},
 ];
 

@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
-import { LogoutComponent } from './logout/logout.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -28,7 +27,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     MyOrdersComponent,
     ManageOrdersComponent,
     ManageProductsComponent,
-    LogoutComponent,
     NavbarComponent,
     ShoppingCartComponent,
     LoginComponent
