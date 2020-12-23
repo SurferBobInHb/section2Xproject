@@ -1,12 +1,24 @@
-<form #f="ngForm" (ngSubmit)="login(f.value)" class="form-signin">
+<form [formGroup]="loginForm" (submit)="login()" class="form-signin">
 
-    <h2>Enter User name and Password</h2>
+    <h2>Login</h2>
 
-    <label for="UserNameId" class="form-control">User Name</label>
-    <input ngModel id="UserNameId" name="username" type="text" placeholder="User name" required autofocus class="form-control">
+    <div *ngIf="submitted && loginForm.errors" class="alert alert-danger">Invalid username and/or password.</div>
 
-    <label for="PasswordId"  class="form-control">Password</label>
-    <input ngModel id="PasswordId" name="password" type="password" placeholder="" required class="form-control">
+    <label class="xform-control">User Name</label>
+    <input formControlName="username" type="text" required autofocus class="form-control">
+    <!-- x {{f.username.invalid}} y {{f.username.errors?.required}} z
+    a {{loginForm.get('username').invalid}} b {{loginForm.get('username').errors.required}} c
+    {{loginForm.get('username').touched}} -->
+    <div *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid" class="alert alert-danger">User
+        name is required</div>
+
+    <label class="xform-control">Password</label>
+    <input formControlName="password" type="password" placeholder="" required class="form-control">
+    <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid" class="alert alert-danger">
+        Password is required</div>
+    <div *ngIf="f.password.errors" class="invalid-feedback">
+        <div *ngif="f.password.errors.required">Password is required</div>
+    </div>
 
     <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
 

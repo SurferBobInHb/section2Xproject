@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { MyOrdersComponent } from './shopping/my-orders/my-orders.component';
 import { ManageOrdersComponent } from './ana/manage-orders/manage-orders.component';
 import { ManageProductsComponent } from './ana/manage-products/manage-products.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
@@ -21,6 +21,8 @@ import { AdminAuthGuard } from './ana/guards/AdminAuthGuard';
 import { NoAccessComponent } from './ana/messages/no-access/no-access.component';
 import { TokenInterceptor } from './interceptors/token-interceptor.service';
 import { JwtInterceptor } from './interceptors/JwtInterceptor ';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoggedInGuard } from './ana/guards/LoggedInGuard';
 
 
 
@@ -42,12 +44,14 @@ import { JwtInterceptor } from './interceptors/JwtInterceptor ';
     FormsModule,
     FontAwesomeModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,
     RouterModule,
     AdminAuthGuard, 
-
+    LoggedInGuard,
+    
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     

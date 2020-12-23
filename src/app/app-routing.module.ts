@@ -8,12 +8,13 @@ import { ManageProductsComponent } from './ana/manage-products/manage-products.c
 import { LoginComponent } from './ana/login/login.component';
 import { AdminAuthGuard } from './ana/guards/AdminAuthGuard';
 import { NoAccessComponent } from './ana/messages/no-access/no-access.component';
+import { LoggedInGuard } from './ana/guards/LoggedInGuard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'ana/login', component: LoginComponent},
-  {path: 'shopping-cart', component: ShoppingCartComponent},
-  {path: 'my-orders', component: MyOrdersComponent},
+  {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [LoggedInGuard]},
+  {path: 'my-orders', component: MyOrdersComponent, canActivate: [LoggedInGuard]},
   {path: 'manage-orders', component: ManageOrdersComponent, canActivate: [AdminAuthGuard]},
   {path: 'manage-products', component: ManageProductsComponent, canActivate: [AdminAuthGuard]},
   {path: 'no-access', component: NoAccessComponent},
