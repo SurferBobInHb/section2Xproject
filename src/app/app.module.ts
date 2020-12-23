@@ -17,6 +17,10 @@ import { LoginComponent } from './ana/login/login.component';
 import { AuthService } from './services/auth.service';
 import { fakeBackendProvider } from './utils/helpers/fake-backend';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminAuthGuard } from './ana/guards/AdminAuthGuard';
+import { NoAccessComponent } from './ana/messages/no-access/no-access.component';
+import { TokenInterceptor } from './services/token-interceptor.service';
+import { JwtInterceptor } from './services/JwtInterceptor ';
 
 
 
@@ -29,7 +33,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     ManageProductsComponent,
     NavbarComponent,
     ShoppingCartComponent,
-    LoginComponent
+    LoginComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -41,11 +46,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   providers: [
     AuthService,
     RouterModule,
+    AdminAuthGuard, 
 
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 
-    // provider used to create fake backend
     fakeBackendProvider
   ],
   bootstrap: [AppComponent]

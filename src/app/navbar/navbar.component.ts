@@ -26,10 +26,18 @@ export class NavbarComponent implements OnInit {
   }
 
   get username() {
-    return this.authService.currentUser;
+    if (this.authService.currentUser == null)
+      return "no one logged in due to current user = null but token is not null";
+    return this.authService.currentUser.username;
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  isAdminUser() : boolean {
+    if (this.authService.currentUser == null)
+      return false;
+    return this.authService.currentUser.role === 'admin';
   }
 }

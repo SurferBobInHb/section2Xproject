@@ -19,8 +19,8 @@
             </a>
             <div ngbDropdownToggleMenu class="dropdown-menu">
                 <a class="dropdown-item" routerLink="/my-orders" routerLinkActive="active-link" >My Orders</a>
-                <a class="dropdown-item" routerLink="/manage-orders" routerLinkActive="active-link">Manage Orders</a>
-                <a class="dropdown-item" routerLink="/manage-products" routerLinkActive="active-link">Manage Products</a>
+                <a class="dropdown-item" routerLink="/manage-orders" routerLinkActive="active-link" [hidden]="isAdminUser()">Manage Orders</a>
+                <a class="dropdown-item" routerLink="/manage-products" routerLinkActive="active-link" [hidden]="isAdminUser()">Manage Products</a>
                 <a class="dropdown-item" routerLink="/" (click)="logout()" routerLinkActive="active-link">Log Out</a>
             </div>
             </li>

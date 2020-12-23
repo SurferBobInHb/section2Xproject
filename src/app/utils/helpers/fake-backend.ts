@@ -73,27 +73,37 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { domain } from 'process';
+import { MyUser } from 'src/app/ana/login/my-user';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
 
-    constructor () {
-        if (users.length == 0) {
-            let x = {username: "mosh@domain.com", password: "1234"};
-            users.push(x);
-            let x2 = {username: "mosh1@domain.com", password: "1234"};
-            users.push(x2)
+    // users : MyUser [] = [
+    //     {username: "mosh@domain.com", password: "1234", role: "admin"},
+    //     {username: "mosh1@domain.com", password: "1234", role: "customer"}
+    // ];
 
-        }
+    users: MyUser [];
+
+    constructor () {
+        // if (users.length == 0) {
+        //     let x = {username: "mosh@domain.com", password: "1234", role: "admin"};
+        //     users.push(x);
+        //     let x2 = {username: "mosh1@domain.com", password: "1234", role: "customer"};
+        //     users.push(x2)
+        // }
+        users.push({username: "mosh@domain.com", password: "1234", role: "admin"});
+        users.push({username: "mosh1@domain.com", password: "1234", role: "customer"});
     }
 
-    static getUserNameFromToken(token: string) : string {
-        if (token === 'fake-jwt-token0') return  "mosh@domain.com";
-        if (token === 'fake-jwt-token1') return  "mosh1@domain.com";
-        return "no user logged in";
+    getUserNameFromToken(token: string) : MyUser {
+        if (token === 'fake-jwt-token0') return  users[0];
+        if (token === 'fake-jwt-token1') return  users[1];
+        return {username: "no user for the token in fake backend", password: "", role: ""};
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -130,7 +140,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function authenticate() {
             const { username, password } = JSON.parse(body);
             let user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            if (!user) 
+                return error('Username or password is incorrect');
 
             let fakejwttoken;
 
