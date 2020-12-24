@@ -39,4 +39,10 @@ export class ProductsService {
     return this.http.delete(productUrl);
   }
 
+  getCategories() : Observable<string[]>{
+    let productsUrl = environment.apiUrl + "angular/product/categories"
+    return this.http.get<string[]>(productsUrl);
+  }
+
+
 }

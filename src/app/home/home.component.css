@@ -1,0 +1,38 @@
+.main {
+    display: flex;
+    padding: 20px 20px 20px 20px;
+}
+
+.left {
+    width:50%;
+    min-width: 150px;
+    padding: 0px 20px 0px 0px;
+}
+
+.right {
+    width:100%;
+    padding: 0px 0px 0px 20px;
+}
+
+.card {
+    min-width: 250px;
+}
+
+.card-img-top {
+    padding: 10px;
+    width: 200px;
+    height:200px;
+    object-fit: contain;
+}
+
+.active-link {
+    background-color: lightblue;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.card-footer {
+    padding: 0;
+}
