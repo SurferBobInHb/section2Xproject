@@ -35,7 +35,7 @@ export class ManageProductsComponent implements OnDestroy, OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 2,
-      lengthMenu: [1, 2, 3],
+      lengthMenu: [1, 2, 3, 5, 10],
       processing: true,
       stateSave: true,
       retrieve: true,

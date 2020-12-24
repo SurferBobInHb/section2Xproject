@@ -1,7 +1,11 @@
 .main {
     padding: 10px 20px 0px 20px;
-    display: flex;
     margin: 50px;
+}
+
+.product-info {
+    display: flex;
+    padding: 0px 0px 20px 0px;
 }
 
 .image {
@@ -35,4 +39,8 @@
 .normal {
     font-weight: normal;
     font-size: normal;
+}
+
+.form-button {
+    margin-right: 20px;
 }
