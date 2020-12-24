@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'my-orders', component: MyOrdersComponent, canActivate: [LoggedInGuard]},
   {path: 'manage-orders', component: ManageOrdersComponent, canActivate: [AdminAuthGuard]},
   {path: 'manage-products', component: ManageProductsComponent, canActivate: [AdminAuthGuard]},
+  {path: 'new-product', component: NewProductComponent, canActivate: [AdminAuthGuard]},
   {path: 'new-product/:id', component: NewProductComponent, canActivate: [AdminAuthGuard]},
   {path: 'no-access', component: NoAccessComponent},
   {path: '**', redirectTo: '/'},

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Person } from './Person';
 import { Product } from 'src/app/models/product';
+import { ProductsService } from './../../services/products.service';
 
 @Component({
   selector: 'manageproducts',
@@ -23,7 +24,7 @@ export class ManageProductsComponent implements OnDestroy, OnInit {
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private productService: ProductsService) { }
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
@@ -47,16 +48,10 @@ export class ManageProductsComponent implements OnDestroy, OnInit {
       {id:3, firstName:"c", lastName: "cc"},
     ];
 
-    let productsUrl = environment.apiUrl + "angular/products"
-    this.http.get<Product []>(productsUrl).subscribe(
+    // let productsUrl = environment.apiUrl + "angular/products"
+    this.productService.getProducts().subscribe(
       response => {
         this.products = response;
-
-        // let newProducts : Product [] = [];
-        // for (let i=0; i<this.products.length; i++) {
-        //   newProducts.push(this.products[i]);
-        // }
-        // this.products = newProducts;
         this.dtTrigger.next();
       },
       error => {console.error(error)}

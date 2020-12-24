@@ -1,6 +1,6 @@
 <div class="main">
     <div class="input-group mb-3 length pb-3">
-        <a type="button" class="btn btn-primary " routerLink="/new-product">Create Product</a>
+        <a type="button" class="btn btn-primary " [routerLink]="['/new-product']">Create Product</a>
     </div>
 
     <!-- <div class="pb-3">
@@ -20,7 +20,7 @@
             <tr *ngFor="let product of products">
                 <td>{{ product.title }}</td>
                 <td>{{ product.price }}</td>
-                <td><a [routerLink]="['new-product', product.id]">Edit</a></td>
+                <td><a [routerLink]="['/new-product', product.id]">Edit</a></td>
             </tr>
         </tbody>
     </table>

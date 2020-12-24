@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoggedInGuard } from './ana/guards/LoggedInGuard';
 import { NewProductComponent } from './shopping/new-product/new-product.component';
 import { DataTablesModule } from 'angular-datatables';
+import { ProductsService } from './services/products.service';
 
 
 
@@ -55,6 +56,7 @@ import { DataTablesModule } from 'angular-datatables';
     RouterModule,
     AdminAuthGuard, 
     LoggedInGuard,
+    ProductsService,
     
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
