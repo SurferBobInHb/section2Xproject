@@ -11,8 +11,6 @@ export class LoggedInGuard implements CanActivate {
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
-        console.log("LoggedInGuard....");
-
         let user: MyUser = this.authService.currentUser;
         if (user == null) {
             this.router.navigate(['ana/login'], { queryParams: { returnUrl: state.url }});

@@ -1,1 +1,30 @@
-<p>manage-products works!</p>
+<div class="main">
+    <div class="input-group mb-3 length pb-3">
+        <a type="button" class="btn btn-primary " routerLink="/new-product">Create Product</a>
+    </div>
+
+    <!-- <div class="pb-3">
+        <input name="search" class="input-group-text search" placeholder="Search...">
+    </div> -->
+
+    <div class="pb-3">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-stripped table-bordered table-sm row-border hover ">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.title }}</td>
+                <td>{{ product.price }}</td>
+                <td><a [routerLink]="['new-product', product.id]">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+

@@ -1,0 +1,10 @@
+.main {
+    padding: 20px;
+}
+
+.search {
+    text-align: left;
+    width: 500px;
+    margin: auto;
+    display: block;
+}

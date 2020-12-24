@@ -1,3 +1,4 @@
+import { NewProductComponent } from './shopping/new-product/new-product.component';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { HomeComponent } from './home/home.component';
 import { ManageOrdersComponent } from './ana/manage-orders/manage-orders.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'my-orders', component: MyOrdersComponent, canActivate: [LoggedInGuard]},
   {path: 'manage-orders', component: ManageOrdersComponent, canActivate: [AdminAuthGuard]},
   {path: 'manage-products', component: ManageProductsComponent, canActivate: [AdminAuthGuard]},
+  {path: 'new-product/:id', component: NewProductComponent, canActivate: [AdminAuthGuard]},
   {path: 'no-access', component: NoAccessComponent},
   {path: '**', redirectTo: '/'},
 ];

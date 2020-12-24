@@ -23,6 +23,8 @@ import { TokenInterceptor } from './interceptors/token-interceptor.service';
 import { JwtInterceptor } from './interceptors/JwtInterceptor ';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoggedInGuard } from './ana/guards/LoggedInGuard';
+import { NewProductComponent } from './shopping/new-product/new-product.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -36,7 +38,8 @@ import { LoggedInGuard } from './ana/guards/LoggedInGuard';
     NavbarComponent,
     ShoppingCartComponent,
     LoginComponent,
-    NoAccessComponent
+    NoAccessComponent,
+    NewProductComponent, 
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { LoggedInGuard } from './ana/guards/LoggedInGuard';
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
+    DataTablesModule,
   ],
   providers: [
     AuthService,

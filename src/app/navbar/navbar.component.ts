@@ -1,6 +1,7 @@
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { MyUser } from '../ana/login/my-user';
 
 @Component({
   selector: 'navbar',
@@ -35,6 +36,11 @@ export class NavbarComponent implements OnInit {
   }
 
   isAdminUser() : boolean {
+    
+    let user: MyUser = this.authService.currentUser;
+    let ans = user.role === "admin";
+    if (ans) return true;
+    
     if (this.authService.currentUser == null)
       return false;
     return this.authService.currentUser.role === 'admin';
