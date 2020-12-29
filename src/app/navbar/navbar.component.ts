@@ -1,7 +1,10 @@
+import { ShoppingCartService } from './../services/shopping-cart.service';
+import { ShoppingCartComponent } from './../shopping/shopping-cart/shopping-cart.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { MyUser } from '../ana/login/my-user';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'navbar',
@@ -14,13 +17,15 @@ export class NavbarComponent implements OnInit {
 
   _isLoggedIn = false;
 
-  constructor(private authService: AuthService) { }
+  shoppingCart: ShoppingCart;
+
+  constructor(private authService: AuthService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
+    this.shoppingCartService.shoppingCartChanged.subscribe(a => {console.log("navbar cart changed " + a); this.shoppingCart = a;});
   }
 
   get isLoggedIn() {
-    // this._isLoggedIn = true;
     this._isLoggedIn = this.authService.isLoggedIn();
     return this._isLoggedIn;
   }
@@ -45,4 +50,9 @@ export class NavbarComponent implements OnInit {
       return false;
     return this.authService.currentUser.role === 'admin';
   }
+
+  get shoppingCartCount() {
+    return this.shoppingCartService.getTotalItems();
+  }
+
 }

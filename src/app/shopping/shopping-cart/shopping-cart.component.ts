@@ -1,4 +1,10 @@
+import { ProductsService } from './../../services/products.service';
+import { ShoppingCart } from './../../models/shopping-cart';
+import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ShoppingCartItemComponent } from 'src/app/shopping-cart-item/shopping-cart-item.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'shopping-cart',
@@ -7,9 +13,75 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor() { }
+  products: Product[] = [];
 
-  ngOnInit(): void {
+  shoppingCart: ShoppingCart;
+
+  cart: Observable<ShoppingCart>;
+
+  constructor(private shoppingCartService: ShoppingCartService, private productsService: ProductsService) {
+  }
+
+  async ngOnInit() {
+    this.products = await this.productsService.getProductsNow();
+    this.shoppingCart = await this.shoppingCartService.getCart();
+    // await this.loadShoppingCartData();
+    this.cart = this.shoppingCartService.shoppingCartChanged;
+    this.cart.subscribe(a => { 
+      console.log(" ShoppingCartComponent in subscribe  " + a); 
+      this.shoppingCart = a; 
+      
+    });
+  }
+
+  async xxxloadShoppingCartData() {
+    this.products = await this.productsService.getProductsNow();
+    // let lproducts = await this.productsService.getProductsNow();
+    console.log(this.products);
+    // console.log(lproducts);
+
+    // console.log(this.shoppingCartService.shoppingCart);
+    // let shpcart = this.shoppingCartService.shoppingCart;
+    // shpcart.subscribe(res => {
+    //   console.log(res); 
+    //   this.shoppingCart = res;
+    //   console.log("this.shoppingCart " + this.shoppingCart);
+    // });
+
+    // this.productsService.getProducts().subscribe(res => {
+    //   console.log("this.shoppingCart 2 " + this.shoppingCart);
+    // });
+  }
+
+  getProduct(productId: number) {
+    let product: Product = this.products.find(p => p.id == productId);
+    return product; 
+  }
+
+  get shoppingCartCount() {
+    let totalItems = this.shoppingCartService.getTotalItems();
+    return totalItems;
+  }
+
+  clearShoppingCart() {
+    return this.shoppingCartService.clear();
+  }
+
+  getTotalCost() {
+    return this.shoppingCartService.totalCost();
+  }
+
+  filteredItems() : { productId: number; quantity: number; } [] {
+    if (! this.shoppingCart.contents)
+      return [];
+    let filteredItems : { productId: number; quantity: number; } [] = [];
+    let items: { productId: number; quantity: number; } [] = this.shoppingCart.contents;
+    for (let item of items) {
+      if (item.quantity > 0) {
+        filteredItems.push(item);
+      }
+    }
+    return filteredItems;
   }
 
 }

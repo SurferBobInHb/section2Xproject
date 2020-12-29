@@ -13,4 +13,9 @@ export class AppComponent {
   constructor() {
   
   }
+
+  handleShoppingCartCountChangeEvent(event) {
+    console.log("handleShoppingCartCountChangeEvent " + event);
+  }
+
 }

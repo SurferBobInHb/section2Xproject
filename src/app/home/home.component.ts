@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
 
   currentCategory : string;
 
+  cardIsActive: true;
+
   constructor(private productsService: ProductsService, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {

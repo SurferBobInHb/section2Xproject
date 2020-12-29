@@ -26,6 +26,8 @@ import { LoggedInGuard } from './ana/guards/LoggedInGuard';
 import { NewProductComponent } from './shopping/new-product/new-product.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ProductsService } from './services/products.service';
+import { ProductCardComponent } from './shopping/product-card/product-card.component';
+import { ShoppingCartItemComponent } from './shopping-cart-item/shopping-cart-item.component';
 
 
 
@@ -40,7 +42,9 @@ import { ProductsService } from './services/products.service';
     ShoppingCartComponent,
     LoginComponent,
     NoAccessComponent,
-    NewProductComponent, 
+    NewProductComponent,
+    ProductCardComponent,
+    ShoppingCartItemComponent, 
   ],
   imports: [
     BrowserModule,

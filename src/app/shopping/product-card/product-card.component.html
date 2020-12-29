@@ -1,0 +1,14 @@
+<div class="card">
+  <img class="card-img-top" src="{{product.imageUrl}}" alt="{{product.imageUrl}}">
+  <div class="card-body">
+    <h5 class="card-title">{{product.title}} : {{product.id}}</h5>
+    <p class="card-text">{{product.price | currency:'USD':true}}</p>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary card-footer-button" [hidden]='productCount(product) != 0' (click)="addToCart()" >Add to Cart</button>
+    <div class="input-group" [hidden]='productCount(product) == 0'>
+      <button class="btn input-group-prepend btn-primary" (click)="removeFromCart()">-</button><label class="form-control num-in-card-label">{{productCount(product)}} in
+        Cart</label><button class="btn input-group-append btn-primary"  (click)="addToCart()">+</button>
+    </div>
+  </div>
+</div>

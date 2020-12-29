@@ -10,3 +10,13 @@
 .dropdown-toggle {
     cursor: pointer;
 }
+
+.cart-container {
+    display:flex; 
+    align-items: center;
+}
+
+.cart-container-count {
+    background-color: darkgoldenrod; 
+    height: 0%; 
+}

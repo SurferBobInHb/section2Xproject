@@ -1,1 +1,23 @@
-<p>shopping-cart works!</p>
+<div class="main" >
+    <h1>Shopping Cart</h1>   
+    You have {{shoppingCartCount}} items in your shopping cart.
+
+    <div>
+        <div class="row">
+            <div class="col"><strong>Image</strong></div>
+            <div class="col"><strong>Product</strong></div>
+            <div class="col"><strong>Quantity</strong></div>
+            <div class="col"><strong>Price</strong></div>
+        </div>
+        <shopping-cart-item *ngFor="let cartItem of filteredItems()" [quantity]="cartItem.quantity" [product]="getProduct(cartItem.productId)" class="row shopping-cart-item"></shopping-cart-item>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col">xxgetTotalCost() | currency:'USD'xx</div>
+        </div>
+   </div>
+
+   <button class="btn btn-primary" (click)="clearShoppingCart()">Clear Shopping Cart</button>
+
+</div>
