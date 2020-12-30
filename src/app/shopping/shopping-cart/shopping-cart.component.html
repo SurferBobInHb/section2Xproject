@@ -1,5 +1,5 @@
-<div class="main" >
-    <h1>Shopping Cart</h1>   
+<div class="main">
+    <h1>Shopping Cart</h1>
     You have {{shoppingCartCount}} items in your shopping cart.
 
     <div>
@@ -9,15 +9,21 @@
             <div class="col"><strong>Quantity</strong></div>
             <div class="col"><strong>Price</strong></div>
         </div>
-        <shopping-cart-item *ngFor="let cartItem of filteredItems()" [quantity]="cartItem.quantity" [product]="getProduct(cartItem.productId)" class="row shopping-cart-item"></shopping-cart-item>
+        <shopping-cart-item *ngFor="let cartItem of filteredItems()" [quantity]="cartItem.quantity"
+            [product]="getProduct(cartItem.productId)" class="row shopping-cart-item"></shopping-cart-item>
         <div class="row">
             <div class="col"></div>
             <div class="col"></div>
             <div class="col"></div>
-            <div class="col">xxgetTotalCost() | currency:'USD'xx</div>
+            <div class="col">getTotalCost() | async | currency:'USD'</div>
         </div>
-   </div>
+    </div>
 
-   <button class="btn btn-primary" (click)="clearShoppingCart()">Clear Shopping Cart</button>
+    <p></p>
+
+    <div class="">
+        <button class="btn btn-primary" (click)="clearShoppingCart()" style="margin-right: 20px">Clear Shopping Cart</button>
+        <button class="btn btn-secondary" (click)="checkOut()">Check Out</button>
+    </div>
 
 </div>

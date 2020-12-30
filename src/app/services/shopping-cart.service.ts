@@ -53,22 +53,6 @@ export class ShoppingCartService {
     });
   }
 
-  // async addToCart(product: number, quantity: number): Observable<ApiResponse> {
-  //   this.shoppingCart.contents[product-1].quantity += quantity; 
-  //   this.shoppingCartChanged.next(this.shoppingCart);
-  //   let cartId = this.getShoppingCartId();
-  //   let productsUrl = environment.apiUrl + "angular/cart/add/" + cartId + "/" + product + "/" + quantity;
-  //   return this.http.get<ApiResponse>(productsUrl);
-  // }
-
-  // removeFromCart(product, quantity): Observable<ApiResponse> {
-  //   this.shoppingCart.contents[product-1].quantity -= quantity;
-  //   this.shoppingCartChanged.next(this.shoppingCart);
-  //   let cartId = this.getShoppingCartId();
-  //   let productsUrl = environment.apiUrl + "angular/cart/remove/" + cartId + "/" + product + "/" + quantity;
-  //   return this.http.get<ApiResponse>(productsUrl);
-  // }
-
   async loadCart() {
     let cartId = this.getShoppingCartId();
     let productsUrl = environment.apiUrl + "angular/cart/get/" + cartId;
@@ -116,12 +100,13 @@ export class ShoppingCartService {
     return quantity;
   }
 
-  async totalCost() {
-    let products: Product[] = await (await this.productsService.getProductsNow());
+  totalCost() : number {
+    // let products: Product[] = await this.productsService.getProductsNow();
+
+    let products = [{productId: 0, price: 6}, {productId: 1, price: 6}, {productId: 2, price: 3}, {productId: 3, price: 3}, {productId: 4, price: 3}, {productId: 5, price: 3}, {productId: 6, price: 3}];
     let total: number = 0;
-    this.shoppingCart.contents.forEach(i => {total += i.quantity * products[i.productId].price});
-    total = 999;
-    return total as number;
+    this.shoppingCart.contents.forEach(i => {total += i.quantity * products[i.productId-1].price});
+    return total;
   }
 
 

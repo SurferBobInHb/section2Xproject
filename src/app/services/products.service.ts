@@ -17,9 +17,10 @@ export class ProductsService {
     return this.http.get<Product[]>(productsUrl);
   }
 
-  async getProductsNow() : Promise<Product []>{
+  async getProductsNow() : Promise<Product[]>{
     let productsUrl = environment.apiUrl + "angular/products";
-    return await this.http.get<Product[]>(productsUrl).toPromise();
+    const response = await this.http.get<Product[]>(productsUrl).toPromise();
+    return response;
   }
 
   getProduct(id: number) : Observable<Product> {

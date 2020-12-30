@@ -1,73 +1,3 @@
-/*
-import { HttpClient, HttpRequest } from '@angular/common/http';
-import { BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/common';
-import { HttpTestingModule , MockConnection } from '@angular/common/http/testing';
- 
-export function fakeBackendFactory(backend: MockBackend, options: HttpRequest) {
-
-    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1vc2ggSGFtZWRhbmkiLCJhZG1pbiI6dHJ1ZX0.iy8az1ZDe-_hS8GLDKsQKgPHvWpHl0zkQBqy1QIPOkA';
-
-    backend.connections.subscribe((connection: MockConnection) => {
-      // We are using the setTimeout() function to simulate an asynchronous call 
-      // to the server that takes 1 second. 
-      setTimeout(() => {
-        //
-        // Fake implementation of /api/authenticate
-        //
-        if (connection.request.url.endsWith('/api/authenticate') && 
-            connection.request.method === RequestMethod.Post) {
-            let body = JSON.parse(connection.request.getBody());
-
-            if (body.email === 'mosh@domain.com' && body.password === '1234') {
-              connection.mockRespond(new Response(
-                new ResponseOptions({ 
-                  status: 200, 
-                  body: { token: token }
-                })
-              ));
-            } else {
-              connection.mockRespond(new Response(
-                new ResponseOptions({ status: 200 })
-              ));
-            }
-        }
-        
-
-
-        // 
-        // Fake implementation of /api/orders
-        //
-        if (connection.request.url.endsWith('/api/orders') && connection.request.method === RequestMethod.Get) {
-            if (connection.request.headers.get('Authorization') === 'Bearer ' + token) {
-                connection.mockRespond(new Response(
-                    new ResponseOptions({ status: 200, body: [1, 2, 3] })
-                ));
-            } else {
-                connection.mockRespond(new Response(
-                    new ResponseOptions({ status: 401 })
-                ));
-            }
-        }     
-          
-        
-
-      }, 1000);
-    });
- 
-    let httpClient = new HttpClient(backend);
-    httpClient.options = options;
-
-    return httpClient;
-}
- 
-export let fakeBackendProvider = {
-    provide: HttpClient,
-    useFactory: fakeBackendFactory,
-    deps: [MockBackend, BaseRequestOptions]
-};
-
-*/
-
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
@@ -82,27 +12,20 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
 
-    // users : MyUser [] = [
-    //     {username: "mosh@domain.com", password: "1234", role: "admin"},
-    //     {username: "mosh1@domain.com", password: "1234", role: "customer"}
-    // ];
-
     users: MyUser [];
 
     constructor () {
-        // if (users.length == 0) {
-        //     let x = {username: "mosh@domain.com", password: "1234", role: "admin"};
-        //     users.push(x);
-        //     let x2 = {username: "mosh1@domain.com", password: "1234", role: "customer"};
-        //     users.push(x2)
-        // }
         users.push({username: "mosh@domain.com", password: "1234", role: "admin"});
         users.push({username: "mosh1@domain.com", password: "1234", role: "customer"});
+        users.push({username: "bob", password: "1234", role: "admin"});
+        users.push({username: "nay", password: "1234", role: "customer"});
     }
 
     getUserNameFromToken(token: string) : MyUser {
         if (token === 'fake-jwt-token0') return  users[0];
         if (token === 'fake-jwt-token1') return  users[1];
+        if (token === 'fake-jwt-token2') return  users[2];
+        if (token === 'fake-jwt-token3') return  users[3];
         return {username: "no user for the token in fake backend", password: "", role: ""};
     }
 
@@ -145,6 +68,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             let fakejwttoken;
 
+            if (username === 'nay') {
+                fakejwttoken = "fake-jwt-token3";
+                user = {username: username, password: password, id: 1, firstName: "nay", lastName: "ddd"};
+            }
+            if (username === 'bob') {
+                fakejwttoken = "fake-jwt-token2";
+                user = {username: username, password: password, id: 1, firstName: "bob", lastName: "ddd"};
+            }
             if (username === 'mosh1@domain.com') {
                 fakejwttoken = "fake-jwt-token1";
                 user = {username: username, password: password, id: 1, firstName: "mosh1", lastName: "ddd"};

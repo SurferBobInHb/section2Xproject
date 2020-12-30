@@ -28,6 +28,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { ProductsService } from './services/products.service';
 import { ProductCardComponent } from './shopping/product-card/product-card.component';
 import { ShoppingCartItemComponent } from './shopping-cart-item/shopping-cart-item.component';
+import { CheckOutComponent } from './shopping/check-out/check-out.component';
+import { ShippingComponent } from './shopping/shipping/shipping.component';
+import { SummaryComponent } from './shopping/summary/summary.component';
 
 
 
@@ -44,7 +47,10 @@ import { ShoppingCartItemComponent } from './shopping-cart-item/shopping-cart-it
     NoAccessComponent,
     NewProductComponent,
     ProductCardComponent,
-    ShoppingCartItemComponent, 
+    ShoppingCartItemComponent,
+    CheckOutComponent,
+    ShippingComponent,
+    SummaryComponent, 
   ],
   imports: [
     BrowserModule,

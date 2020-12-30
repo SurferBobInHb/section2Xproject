@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductsService } from './../../services/products.service';
 import { ShoppingCart } from './../../models/shopping-cart';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
@@ -19,7 +20,7 @@ export class ShoppingCartComponent implements OnInit {
 
   cart: Observable<ShoppingCart>;
 
-  constructor(private shoppingCartService: ShoppingCartService, private productsService: ProductsService) {
+  constructor(private shoppingCartService: ShoppingCartService, private productsService: ProductsService, private router: Router) {
   }
 
   async ngOnInit() {
@@ -67,12 +68,13 @@ export class ShoppingCartComponent implements OnInit {
     return this.shoppingCartService.clear();
   }
 
-  getTotalCost() {
-    return this.shoppingCartService.totalCost();
+  getTotalCost() : number {
+    let totalCost = this.shoppingCartService.totalCost();
+    return totalCost;
   }
 
   filteredItems() : { productId: number; quantity: number; } [] {
-    if (! this.shoppingCart.contents)
+    if (! this.shoppingCart || ! this.shoppingCart.contents)
       return [];
     let filteredItems : { productId: number; quantity: number; } [] = [];
     let items: { productId: number; quantity: number; } [] = this.shoppingCart.contents;
@@ -82,6 +84,14 @@ export class ShoppingCartComponent implements OnInit {
       }
     }
     return filteredItems;
+  }
+
+  checkOut() {
+    this.router.navigate(['/check-out']);
+  }
+
+  onSubmit() {
+    
   }
 
 }

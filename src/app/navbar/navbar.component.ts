@@ -1,17 +1,18 @@
 import { ShoppingCartService } from './../services/shopping-cart.service';
 import { ShoppingCartComponent } from './../shopping/shopping-cart/shopping-cart.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { MyUser } from '../ana/login/my-user';
 import { ShoppingCart } from '../models/shopping-cart';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   faCoffee = faCoffee;
 
@@ -19,10 +20,16 @@ export class NavbarComponent implements OnInit {
 
   shoppingCart: ShoppingCart;
 
+  subscription: Subscription;
+
   constructor(private authService: AuthService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.shoppingCartService.shoppingCartChanged.subscribe(a => {console.log("navbar cart changed " + a); this.shoppingCart = a;});
+    this.subscription = this.shoppingCartService.shoppingCartChanged.subscribe(a => {console.log("navbar cart changed " + a); this.shoppingCart = a;});
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   get isLoggedIn() {
@@ -38,6 +45,10 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  getMyOrdersUrl() {
+    return "/my-orders/" + this.username;
   }
 
   isAdminUser() : boolean {

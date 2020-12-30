@@ -3,7 +3,7 @@
     <fa-icon [icon]="faCoffee" class="logo-icon"></fa-icon>
   
       <!-- Brand -->
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" routerLink="/">My Store</a>
     
       <!-- Links -->
       <ul class="navbar-nav">
@@ -21,7 +21,7 @@
                 {{username}} ({{authService.currentUser.role}})
             </a>
             <div ngbDropdownToggleMenu class="dropdown-menu">
-                <a class="dropdown-item" routerLink="/my-orders" routerLinkActive="active-link" >My Orders</a>
+                <a class="dropdown-item" [routerLink]="['/my-orders', username]" routerLinkActive="active-link" >My Orders</a>
                 <a class="dropdown-item" routerLink="/manage-orders" routerLinkActive="active-link" [hidden]="! isAdminUser()">Manage Orders</a>
                 <a class="dropdown-item" routerLink="/manage-products" routerLinkActive="active-link" [hidden]="! isAdminUser()">Manage Products</a>
                 <a class="dropdown-item" routerLink="/" (click)="logout()" routerLinkActive="active-link">Log Out</a>
@@ -34,5 +34,5 @@
               </li>  
         </div>
         </ul>
-        <label for="" style="color: red;">is logged in: {{isLoggedIn}}</label>
+        <!-- <label for="" style="color: red;">is logged in: {{isLoggedIn}}</label> -->
     </nav>

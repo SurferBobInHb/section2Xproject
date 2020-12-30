@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       this.products = products;
       console.log(products);
       this.setFilteredProducts();
-    });
+    }, (error) => {console.log(error)});
 
     this.activatedRoute.queryParamMap.subscribe(x => {
       this.currentCategory = x.get("category");

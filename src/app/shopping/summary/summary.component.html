@@ -1,0 +1,34 @@
+<div class="form-group" style="padding:20px">
+    <!--style="xborder: 1px red solid; padding:20px"-->
+
+    <div style="border-bottom: lightgray 1px solid;">
+        <h1>Order Summary</h1>
+        <label for="" class="form-label">You have {{getShoppingCartCount()}} items in your shopping cart</label>
+    </div>
+
+    <div class="mb-3"></div>
+
+    <div *ngIf="products != null"></div>
+    <div *ngFor="let item of items">
+        <div class="xmb-3"
+            style="width: 100%; display: grid; grid-template-columns: repeat(2,50%); border-bottom: lightgray 1px solid; margin-top: 20px">
+            <label for="" class="xform-label" style="align-self: flex-start;">{{item.quantity}} x
+                {{getProduct(item)?.title}}</label>
+            <label for="" class="xform-label" style="text-align: right;">{{getProduct(item)?.price |
+                currency:'USD'}}</label>
+        </div>
+    </div>
+
+    <div>
+        <label for="" class="form-label"></label>
+    </div>
+
+    <div class="xmb-3" style="width: 100%; display: grid; grid-template-columns: repeat(2,50%);">
+        <label for="" class="xform-label"
+            style="align-self: flex-start; font-style: bold"><strong>Total</strong></label>
+        <label for="" class="xform-label" style="text-align: right; font-style: bold"><strong>{{getTotalCost() |
+                currency:'USD'}}</strong></label>
+    </div>
+
+
+</div>

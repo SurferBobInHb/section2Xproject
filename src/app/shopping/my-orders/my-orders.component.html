@@ -1,1 +1,30 @@
-<p>my-orders works!</p>
+<div class="form-group" style="padding:20px;">
+
+    <h1>Orders</h1>
+
+    <div class="mb-3"></div>
+
+    <div *ngIf="orders != null">
+
+        <table style="width: 60%; table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders">
+                    <td>{{order.id}}</td>
+                    <td>{{order.customer}}</td>
+                    <td>{{order.date}}</td>
+                    <td><a routerLink="['/']">View</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

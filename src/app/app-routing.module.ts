@@ -1,3 +1,6 @@
+import { SummaryComponent } from './shopping/summary/summary.component';
+import { ShippingComponent } from './shopping/shipping/shipping.component';
+import { CheckOutComponent } from './shopping/check-out/check-out.component';
 import { NewProductComponent } from './shopping/new-product/new-product.component';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { HomeComponent } from './home/home.component';
@@ -15,11 +18,14 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'ana/login', component: LoginComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [LoggedInGuard]},
-  {path: 'my-orders', component: MyOrdersComponent, canActivate: [LoggedInGuard]},
+  {path: 'my-orders/:username', component: MyOrdersComponent, canActivate: [LoggedInGuard]},
   {path: 'manage-orders', component: ManageOrdersComponent, canActivate: [AdminAuthGuard]},
   {path: 'manage-products', component: ManageProductsComponent, canActivate: [AdminAuthGuard]},
   {path: 'new-product', component: NewProductComponent, canActivate: [AdminAuthGuard]},
   {path: 'new-product/:id', component: NewProductComponent, canActivate: [AdminAuthGuard]},
+  {path: 'check-out', component: CheckOutComponent, canActivate: [LoggedInGuard]},
+  {path: 'summary', component: SummaryComponent, canActivate: [LoggedInGuard]},
+  {path: 'shipping', component: ShippingComponent, canActivate: [LoggedInGuard]},
   {path: 'no-access', component: NoAccessComponent},
   {path: '**', redirectTo: '/'},
 ];
