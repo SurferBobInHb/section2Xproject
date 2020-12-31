@@ -11,7 +11,9 @@ public class NgCart {
 	
 	Map<Integer, Integer> productIdQuantityMap = new HashMap<>();
 	
-	
+	public NgCart() {
+		
+	}
 	
 	public NgCart(String id) {
 		this.id = id;

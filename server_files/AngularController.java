@@ -1,6 +1,8 @@
 package com.example.polls.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.polls.model.NgCart;
+import com.example.polls.model.NgOrder;
 import com.example.polls.model.NgProduct;
-import com.example.polls.model.NgProductIdQuantity;
 import com.example.polls.payload.ApiResponse;
 
 @RestController
@@ -117,9 +119,6 @@ public class AngularController {
     	NgCart cart;
     	if (! cartManager.containsKey(cartId)) {
     		cart = new NgCart(cartId);
-//    		cart.addItemToCart(1, 6);
-//    		cart.addItemToCart(2, 36);
-//    		cart.addItemToCart(3, 22);
     	}
     	else
     		cart = cartManager.get(cartId);
@@ -127,6 +126,27 @@ public class AngularController {
     	return cart;
     }
     
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    Map<String, NgOrder> orderManager = new HashMap<>();
+    
+    @GetMapping({"/orders", "/orders/{name}"})
+    public List<NgOrder> getOrders(@PathVariable(value="name", required = false) String name) {
+    	List<NgOrder> orders;
+    	if (name == null)
+    		orders = orderManager.values().stream().collect(Collectors.toList());
+    	else
+    		orders = orderManager.values().stream().filter(o ->o.getCustomer().equals(name)).collect(Collectors.toList());
+    	return orders;
+    }
+    
+    @PostMapping("/order/create")
+    public ResponseEntity<ApiResponse> submitOrder(@RequestBody NgOrder order) {
+    	String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    	order.setDate(date);
+    	orderManager.put(order.getId(), order);
+    	return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, String.format("Added order id %s", order.getId())));
+    }
 
 
 }
