@@ -2,56 +2,52 @@ import { Router } from '@angular/router';
 import { ProductsService } from './../../services/products.service';
 import { ShoppingCart } from './../../models/shopping-cart';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ShoppingCartItemComponent } from 'src/app/shopping-cart-item/shopping-cart-item.component';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   products: Product[] = [];
 
   shoppingCart: ShoppingCart;
 
-  cart: Observable<ShoppingCart>;
+  cartObserver: Observable<ShoppingCart>;
+
+  subscriptions: Subscription [];
 
   constructor(private shoppingCartService: ShoppingCartService, private productsService: ProductsService, private router: Router) {
   }
 
-  async ngOnInit() {
-    this.products = await this.productsService.getProductsNow();
-    this.shoppingCart = await this.shoppingCartService.getCart();
-    // await this.loadShoppingCartData();
-    this.cart = this.shoppingCartService.shoppingCartChanged;
-    this.cart.subscribe(a => { 
-      console.log(" ShoppingCartComponent in subscribe  " + a); 
-      this.shoppingCart = a; 
-      
+  ngOnInit() {
+    this.subscriptions = new Array(2);
+    let subscription = this.productsService.getProducts().subscribe(
+      res => {this.products = res},
+      error => {console.log(error)}
+    );
+    this.subscriptions.push(subscription)
+    
+    this.shoppingCart = this.shoppingCartService.getCart();
+
+    this.cartObserver = this.shoppingCartService.shoppingCartChanged;
+
+    subscription = this.cartObserver.subscribe(shoppingCart => { 
+      this.shoppingCart = shoppingCart; 
     });
+    this.subscriptions.push(subscription);
   }
 
-  async xxxloadShoppingCartData() {
-    this.products = await this.productsService.getProductsNow();
-    // let lproducts = await this.productsService.getProductsNow();
-    console.log(this.products);
-    // console.log(lproducts);
-
-    // console.log(this.shoppingCartService.shoppingCart);
-    // let shpcart = this.shoppingCartService.shoppingCart;
-    // shpcart.subscribe(res => {
-    //   console.log(res); 
-    //   this.shoppingCart = res;
-    //   console.log("this.shoppingCart " + this.shoppingCart);
-    // });
-
-    // this.productsService.getProducts().subscribe(res => {
-    //   console.log("this.shoppingCart 2 " + this.shoppingCart);
-    // });
+  ngOnDestroy() {
+    this.subscriptions.forEach(element => {
+      element.unsubscribe();
+    });
   }
 
   getProduct(productId: number) {
@@ -68,13 +64,16 @@ export class ShoppingCartComponent implements OnInit {
     return this.shoppingCartService.clear();
   }
 
-  getTotalCost() : number {
-    let totalCost = this.shoppingCartService.totalCost();
-    return totalCost;
+  getTotalCost(): number {
+    if (!this.products || this.products.length == 0 || !this.shoppingCart)
+      return 0;
+    let total: number = 0;
+    this.shoppingCart.contents.forEach(i => { total += i.quantity * this.products[i.productId - 1].price });
+    return total;
   }
 
   filteredItems() : { productId: number; quantity: number; } [] {
-    if (! this.shoppingCart || ! this.shoppingCart.contents)
+    if (! this.shoppingCart || ! this.shoppingCart.contents || ! this.products || this.products.length == 0)
       return [];
     let filteredItems : { productId: number; quantity: number; } [] = [];
     let items: { productId: number; quantity: number; } [] = this.shoppingCart.contents;

@@ -26,20 +26,17 @@ export class ProductCardComponent implements OnInit {
   addToCart() {
     this.cardIsActive = true;
     console.log("addtocard", this);
-    this.shoppingCartService.addToCart(this.product.id, 1); //.subscribe(res => {}, error => {console.log((error as ApiResponse).message)});
+    this.shoppingCartService.addToCart(this.product.id, 1); 
   }
 
   removeFromCart() {
     this.cardIsActive = true;
     console.log("removeFromCart", this);
-    this.shoppingCartService.removeFromCart(this.product.id, 1);//.subscribe(res => {}, error => {console.log((error as ApiResponse).message)});
+    this.shoppingCartService.removeFromCart(this.product.id, 1);
   }
 
   productCount(productIn: Product) {
     return this.shoppingCartService.getProductCount(productIn.id);
   }
 
-  get count() {
-    return 777;
-  }
 }

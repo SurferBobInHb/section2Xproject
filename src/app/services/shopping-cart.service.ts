@@ -9,6 +9,7 @@ import { ShoppingCart } from '../models/shopping-cart';
 import { ApiResponse } from '../shopping/new-product/new-product.component';
 import { Product } from '../models/product';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -85,10 +86,10 @@ export class ShoppingCartService {
       return 0;
     console.log("quantity 1 = " + this.shoppingCart.contents);
     this.shoppingCart.contents.forEach(item => console.log("qqq = " + item + " " + item.quantity + " " + item.productId));
-    let item = this.shoppingCart.contents.find(item => {item.productId == productId}); // this didn't work.  had to use forloop below
-    for (let i2 of this.shoppingCart.contents) {
-      if (i2.productId == productId) {
-        item = i2;
+    let item : { productId: number, quantity: number};
+    for (let cartItem of this.shoppingCart.contents) {
+      if (cartItem.productId == productId) {
+        item = cartItem;
         break;
       }
     }
@@ -96,18 +97,6 @@ export class ShoppingCartService {
       var quantity = 0;
     else
       quantity = item.quantity;
-    console.log("quantity 2 = " + quantity);
     return quantity;
   }
-
-  totalCost() : number {
-    // let products: Product[] = await this.productsService.getProductsNow();
-
-    let products = [{productId: 0, price: 6}, {productId: 1, price: 6}, {productId: 2, price: 3}, {productId: 3, price: 3}, {productId: 4, price: 3}, {productId: 5, price: 3}, {productId: 6, price: 3}];
-    let total: number = 0;
-    this.shoppingCart.contents.forEach(i => {total += i.quantity * products[i.productId-1].price});
-    return total;
-  }
-
-
 }

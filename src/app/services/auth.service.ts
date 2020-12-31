@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { JwtHelper } from '../utils/helpers/JwtHelper';
 import { MyUser } from '../ana/login/my-user';
-// import {JwtHelper} from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthService {

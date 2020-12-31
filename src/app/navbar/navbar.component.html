@@ -9,7 +9,7 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <div class="cart-container">
-            <a class="nav-link" routerLink= "/shopping-cart" routerLinkActive="active-link">Shopping Cart</a>
+            <a class="nav-link" routerLink= "/shopping-cart" routerLinkActive="active current">Shopping Cart</a>
             <span class="badge badge-light cart-container-count">{{shoppingCartCount}}</span>
         </div>
         </li>
@@ -20,11 +20,11 @@
             <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 {{username}} ({{authService.currentUser.role}})
             </a>
-            <div ngbDropdownToggleMenu class="dropdown-menu">
-                <a class="dropdown-item" [routerLink]="['/my-orders', username]" routerLinkActive="active-link" >My Orders</a>
-                <a class="dropdown-item" routerLink="/manage-orders" routerLinkActive="active-link" [hidden]="! isAdminUser()">Manage Orders</a>
-                <a class="dropdown-item" routerLink="/manage-products" routerLinkActive="active-link" [hidden]="! isAdminUser()">Manage Products</a>
-                <a class="dropdown-item" routerLink="/" (click)="logout()" routerLinkActive="active-link">Log Out</a>
+            <div ngbDropdownToggleMenu class="dropdown-menu" >
+                <a class="dropdown-item" [routerLink]="['/my-orders', username]" routerLinkActive="active current" >My Orders</a>
+                <a class="dropdown-item" routerLink="/manage-orders"  [hidden]="! isAdminUser()" routerLinkActive="active current"> Manage Orders</a>
+                <a class="dropdown-item" routerLink="/manage-products"  [hidden]="! isAdminUser()" routerLinkActive="active current">Manage Products</a>
+                <a class="dropdown-item" routerLink="/" (click)="logout()" >Log Out</a>
             </div>
             </li>
         </div>
@@ -34,5 +34,4 @@
               </li>  
         </div>
         </ul>
-        <!-- <label for="" style="color: red;">is logged in: {{isLoggedIn}}</label> -->
     </nav>

@@ -1,5 +1,4 @@
 import { RouterModule } from '@angular/router';
-// import { JwtHelper } from 'angular2-jwt';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -31,6 +30,7 @@ import { ShoppingCartItemComponent } from './shopping-cart-item/shopping-cart-it
 import { CheckOutComponent } from './shopping/check-out/check-out.component';
 import { ShippingComponent } from './shopping/shipping/shipping.component';
 import { SummaryComponent } from './shopping/summary/summary.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -60,6 +60,7 @@ import { SummaryComponent } from './shopping/summary/summary.component';
     HttpClientModule,
     ReactiveFormsModule,
     DataTablesModule,
+    CommonModule
   ],
   providers: [
     AuthService,

@@ -3,7 +3,7 @@ import { OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Person } from './Person';
+import { Person } from '../../models/Person';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from './../../services/products.service';
 
@@ -48,7 +48,6 @@ export class ManageProductsComponent implements OnDestroy, OnInit {
       {id:3, firstName:"c", lastName: "cc"},
     ];
 
-    // let productsUrl = environment.apiUrl + "angular/products"
     this.productService.getProducts().subscribe(
       response => {
         this.products = response;

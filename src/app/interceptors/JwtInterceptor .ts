@@ -3,6 +3,9 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
+/*
+NOTE: USING JwtInterceptor AND TOKEN-INTERCEPTOR. BOTH DO THE SAME THING.  THIS WAS DONE FOR TESTING DURING LEARNING
+*/
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

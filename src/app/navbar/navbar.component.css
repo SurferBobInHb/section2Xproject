@@ -20,3 +20,7 @@
     background-color: darkgoldenrod; 
     height: 0%; 
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: lightgrey; color: black;
+}

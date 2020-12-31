@@ -2,28 +2,31 @@
     <h1>Shopping Cart</h1>
     You have {{shoppingCartCount}} items in your shopping cart.
 
-    <div>
-        <div class="row">
-            <div class="col"><strong>Image</strong></div>
-            <div class="col"><strong>Product</strong></div>
-            <div class="col"><strong>Quantity</strong></div>
-            <div class="col"><strong>Price</strong></div>
+    <div *ngIf="shoppingCart != null && products != null && products.length > 0">
+        <div>
+            <div class="row">
+                <div class="col"><strong>Image</strong></div>
+                <div class="col"><strong>Product</strong></div>
+                <div class="col"><strong>Quantity</strong></div>
+                <div class="col"><strong>Price</strong></div>
+            </div>
+            <shopping-cart-item *ngFor="let cartItem of filteredItems()" [quantity]="cartItem.quantity"
+                [product]="getProduct(cartItem.productId)" class="row shopping-cart-item"></shopping-cart-item>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"><strong>{{getTotalCost() | currency:'USD'}}</strong></div>
+            </div>
         </div>
-        <shopping-cart-item *ngFor="let cartItem of filteredItems()" [quantity]="cartItem.quantity"
-            [product]="getProduct(cartItem.productId)" class="row shopping-cart-item"></shopping-cart-item>
-        <div class="row">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col">getTotalCost() | async | currency:'USD'</div>
+
+        <p></p>
+
+        <div class="">
+            <button class="btn btn-primary" (click)="clearShoppingCart()" style="margin-right: 20px">Clear Shopping
+                Cart</button>
+            <button class="btn btn-secondary" (click)="checkOut()">Check Out</button>
         </div>
+
     </div>
-
-    <p></p>
-
-    <div class="">
-        <button class="btn btn-primary" (click)="clearShoppingCart()" style="margin-right: 20px">Clear Shopping Cart</button>
-        <button class="btn btn-secondary" (click)="checkOut()">Check Out</button>
-    </div>
-
 </div>

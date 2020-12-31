@@ -28,7 +28,7 @@ export class ShippingComponent implements OnInit {
       res => {
         console.log(res);
         this.shoppingCartService.clear();
-        this.router.navigate(['/']);
+        this.router.navigate(['/my-orders', this.authService.currentUser.username]);
       },
       error => {
         console.log(error);

@@ -6,9 +6,6 @@
 
     <label class="xform-control">User Name</label>
     <input formControlName="username" type="text" required autofocus class="form-control">
-    <!-- x {{f.username.invalid}} y {{f.username.errors?.required}} z
-    a {{loginForm.get('username').invalid}} b {{loginForm.get('username').errors.required}} c
-    {{loginForm.get('username').touched}} -->
     <div *ngIf="loginForm.get('username').touched && loginForm.get('username').invalid" class="alert alert-danger">User
         name is required</div>
 

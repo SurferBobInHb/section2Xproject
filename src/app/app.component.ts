@@ -14,8 +14,4 @@ export class AppComponent {
   
   }
 
-  handleShoppingCartCountChangeEvent(event) {
-    console.log("handleShoppingCartCountChangeEvent " + event);
-  }
-
 }

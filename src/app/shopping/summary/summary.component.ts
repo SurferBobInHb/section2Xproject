@@ -25,7 +25,7 @@ export class SummaryComponent implements OnInit {
   }
 
   get items() {
-    return this.shoppingCart.contents;
+    return this.shoppingCart.contents.filter(i => i.quantity > 0);
   }
 
   getProduct(item): Product {

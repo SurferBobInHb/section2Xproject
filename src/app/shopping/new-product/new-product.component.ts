@@ -87,8 +87,6 @@ export class NewProductComponent implements OnInit {
     return this.products;
   }
 
-
-
   deleteProduct() {
     console.log("deleteProduct");
     this.productService.deleteProduct(this.productId).subscribe(
@@ -108,23 +106,6 @@ export class NewProductComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/manage-products']);
-  }
-
-  deleteProduct2() {
-    console.log("deleteProduct");
-    this.productService.deleteProduct(this.productId).subscribe(
-      result => {
-        console.log("deleteProduct call successful value returned in body ", result);
-      },
-      response => {
-        this.apiReponse.message = this.apiReponse.message + "asdfad";
-        console.log("deleteProduct call in error ", response);
-      },
-      () => {
-        console.log("The deleteProduct observable is now completed.");
-        this.router.navigate(['/manage-products']);
-      }
-    );
   }
 
   saveProduct(newOrEditedProduct) {
